@@ -39,7 +39,6 @@ public class U_ThiefAI : U_BaseAI
     {
         if (other.CompareTag("Pedestrian"))
         {
-            // Buscamos el componente específico que pide tu Singleton
             U_PedestrianAI pedestrian = other.GetComponent<U_PedestrianAI>();
             if (pedestrian != null)
             {

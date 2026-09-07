@@ -20,7 +20,6 @@ public class U_PoliceAI : U_BaseAI
     {
         if (other.CompareTag("Thief"))
         {
-            // Buscamos el componente específico que pide tu Singleton
             U_ThiefAI thief = other.GetComponent<U_ThiefAI>();
             if (thief != null)
             {
