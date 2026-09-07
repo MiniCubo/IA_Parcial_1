@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class U_ThiefAI : U_BaseAI
-{
+{   
     protected override void UpdateAI()
     {
         U_PedestrianAI actorToSeek = SingletonActors.Instance.TraceActors<U_PedestrianAI>(this);
@@ -33,5 +33,18 @@ public class U_ThiefAI : U_BaseAI
         float distanceToPlayer = (player.Transform.position - transform.position).sqrMagnitude;
 
         return distanceToPlayer < distanceToPolice ? player : police;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pedestrian"))
+        {
+            // Buscamos el componente específico que pide tu Singleton
+            U_PedestrianAI pedestrian = other.GetComponent<U_PedestrianAI>();
+            if (pedestrian != null)
+            {
+                SingletonActors.Instance.DestroyActor(pedestrian);
+            }
+        }
     }
 }

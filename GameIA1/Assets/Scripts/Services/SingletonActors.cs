@@ -29,6 +29,11 @@ public class SingletonActors : MonoBehaviour
     private List<U_PedestrianAI> pedestrians;
     private U_Player player;
 
+    public int GetThievesCount()
+    {
+        return thieves.Count; 
+    }
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -107,8 +112,8 @@ public class SingletonActors : MonoBehaviour
             U_ThiefAI t = thieves.Find(obj => obj == actor as U_ThiefAI);
             if (t != null)
             {
-                Destroy(t);
                 thieves.Remove(t);
+                Destroy(t.gameObject);
             }
         }
         else if (typeof(T) == typeof(U_PoliceAI))
@@ -116,8 +121,8 @@ public class SingletonActors : MonoBehaviour
             U_PoliceAI t = polices.Find(obj => obj == actor as U_PoliceAI);
             if (t != null)
             {
-                Destroy(t);
                 polices.Remove(t);
+                Destroy(t.gameObject);
             }
         }
         else if (typeof(T) == typeof(U_PedestrianAI))
@@ -125,8 +130,8 @@ public class SingletonActors : MonoBehaviour
             U_PedestrianAI t = pedestrians.Find(obj => obj == actor as U_PedestrianAI);
             if (t != null)
             {
-                Destroy(t);
                 pedestrians.Remove(t);
+                Destroy(t.gameObject);
             }
         }
         else if (typeof(T) == typeof(U_Player))

@@ -56,5 +56,18 @@ public class U_Player : MonoBehaviour, IDescription
         Vector3 velocityVector = transform.position - lastPosition;
         return velocityVector.magnitude;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Thief"))
+        {
+            // Buscamos el componente específico que pide tu Singleton
+            U_ThiefAI thief = other.GetComponent<U_ThiefAI>();
+            if (thief != null)
+            {
+                SingletonActors.Instance.DestroyActor(thief);
+            }
+        }
+    }
 }
 

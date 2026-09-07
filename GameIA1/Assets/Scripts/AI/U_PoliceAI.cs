@@ -15,4 +15,17 @@ public class U_PoliceAI : U_BaseAI
             base.Wander();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Thief"))
+        {
+            // Buscamos el componente específico que pide tu Singleton
+            U_ThiefAI thief = other.GetComponent<U_ThiefAI>();
+            if (thief != null)
+            {
+                SingletonActors.Instance.DestroyActor(thief);
+            }
+        }
+    }
 }
